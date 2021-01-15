@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter  } from '@angular/core';
+// import { EventEmitter } from 'events';
 
 @Component({
   selector: 'app-products',
@@ -18,13 +19,22 @@ export class ProductsComponent implements OnInit {
   isLogin = true;
 
   @Input() myName: any;
+  @Input() products: any;
+
+  @Output() changeName = new EventEmitter<string>();
 
   className = 'products-list';
   isDisabled = false;
 
+  myClassName = 'container';
 
- 
-  
+  date = 3;
+
+  user = {
+    name: 'Toan',
+    isAdmin: false,
+    email: 'toan@gmail.com'
+  };
 
   constructor() { }
 
@@ -39,5 +49,13 @@ export class ProductsComponent implements OnInit {
   sayMyName(name: string): void {
     alert(name)
   }
+
+  public changeTitle(product: any){
+    // console.log('change title');
+    
+    this.changeName.emit(product);
+  }
+
+
 
 }
