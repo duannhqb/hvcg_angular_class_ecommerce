@@ -3,7 +3,15 @@ h2 {
 }
 
 .products {
-    width: 500px;
-    min-height: 300px;
-    border: 1px solid red;
+    // margin-top: 50px;
+    .products-items {
+        &__body {
+            &--image {
+                max-width: 250px;
+                img {
+                    width: 100%;
+                }
+            }
+        }
+    }
 }
