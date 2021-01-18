@@ -8,6 +8,13 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BorderColorDirective } from './border-color.directive';
 import { ProductItemComponent } from './product-item/product-item.component';
+import { FormsModule } from '@angular/forms';
+import { UsersComponent } from './users/users.component';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './pages/login/login.component';
+import { SignupComponent } from './pages/signup/signup.component';
+import { UserDetailComponent } from './pages/user-detail/user-detail.component';
+import { NotfoundComponent } from './pages/notfound/notfound.component'
 
 @NgModule({
   declarations: [
@@ -16,11 +23,18 @@ import { ProductItemComponent } from './product-item/product-item.component';
     HeaderComponent,
     FooterComponent,
     BorderColorDirective,
-    ProductItemComponent
+    ProductItemComponent,
+    UsersComponent,
+    HomeComponent,
+    LoginComponent,
+    SignupComponent,
+    UserDetailComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
