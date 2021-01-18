@@ -27,8 +27,14 @@ export class ProductsComponent implements OnInit {
   isDisabled = false;
 
   myClassName = 'container';
+  pageTitle = 'This iS pRoduct component';
 
-  date = 3;
+  date = '18/01/2021';
+  dob = '01/18/2021';
+  name = "Toan";
+
+  population = 0.098098;
+  money = 9;
 
   user = {
     name: 'Toan',
