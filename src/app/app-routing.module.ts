@@ -1,12 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { SignupComponent } from './pages/signup/signup.component';
-import { UserDetailComponent } from './pages/user-detail/user-detail.component';
-import { ProductsComponent } from './products/products.component';
-import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
  
@@ -18,7 +15,10 @@ const routes: Routes = [
   },
   
   {
-    path: 'products', component: ProductsComponent
+    path: 'products', loadChildren: () => import('./modules/products/products.module').then(m => m.ProductsModule)
+  },
+  {
+    path: 'categories', loadChildren: () => import('./modules/categories/categories.module').then(m => m.CategoriesModule)
   },
   {
     path: 'login', component: LoginComponent
@@ -27,10 +27,7 @@ const routes: Routes = [
     path: 'signup', component: SignupComponent
   },
   {
-    path: 'users', component: UsersComponent
-  },
-  {
-    path: 'users/:id', component: UserDetailComponent
+    path: 'users', loadChildren: () => import('./modules/users/users.module').then(m => m.UsersModule)
   },
   {
     path: '**', component: NotfoundComponent
