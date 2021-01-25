@@ -40,3 +40,9 @@ export class AppModule {
     
   }
 }
+
+// clean architecture
+
+// data
+// domain
+// presentation
