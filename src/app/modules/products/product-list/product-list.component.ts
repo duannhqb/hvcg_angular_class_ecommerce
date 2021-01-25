@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { IProduct } from 'src/app/models/product.model';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-product-list',
@@ -7,10 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductListComponent implements OnInit {
 
-  products = [{id: 1}, {id: 2}]
-  constructor() { }
+  public products: IProduct[] = [];
+  
+
+  constructor(public productService: ProductService) { }
 
   ngOnInit(): void {
+    this.products = this.productService.getProducts();    
   }
 
 }
+// service --> dependency injection
