@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { IUserLogin } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 
@@ -11,20 +13,22 @@ export class LoginComponent implements OnInit {
 
   constructor(public userService: UserService) { }
 
+  userForm = new FormGroup({
+    email: new FormControl(""),
+    password: new FormControl(""),
+  });
+
   ngOnInit(): void {
   }
 
-  public userLogin(loginForm: any): void {
-    console.log(loginForm);
+  public userLogin(): void {
     
-    const email = loginForm.value.email;
-    const password = loginForm.value.password;
-    const user: IUserLogin = {
-      email,
-      password
+    const body = {
+      email: this.userForm.controls.email.value,
+      password: this.userForm.controls.password.value
     }
-    this.userService.login(user);
-
+    
+    // console.log(body);
     
   }
 
