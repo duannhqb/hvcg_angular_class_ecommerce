@@ -1,15 +1,21 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IUserLogin } from '../models/user.model';
+import { IUserLogin, IUserRegister } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor() { }
+  constructor(public http: HttpClient) { }
 
   public login(user: IUserLogin){
-    console.log('UserService->Login', user);
-    // `http://165.22.103.200:8083/auth/login`
+    const headers = {'Content-Type': 'application/json'}
+    return this.http.post('http://localhost:8000/api/users/login', user, {headers});
+  }
+
+  public register(user: IUserRegister){
+    const headers = {'Content-Type': 'application/json'}
+    return this.http.post('http://localhost:8000/api/users/register', user, {headers});
   }
 }

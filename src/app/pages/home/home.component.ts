@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -21,9 +22,10 @@ export class HomeComponent implements OnInit {
   userName = 'admin';
 
 
-  constructor() { }
+  constructor(public http: HttpClient) { }
 
   ngOnInit(): void {
+    this.getUser();
   }
 
   public changeName(product: any): void {
@@ -36,6 +38,17 @@ export class HomeComponent implements OnInit {
     console.log('Toogle user');
     
     this.isShow = !this.isShow;
+  }
+
+  public getUser(){
+    const token = localStorage.getItem('access_token');
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }
+    this.http.get('http://localhost:8000/api/users', {headers}).subscribe((response) => {
+      console.log(response);
+    });
   }
 
 }

@@ -3,13 +3,13 @@
         <div class="col-8 offset-2">
 
             <h5>Login User</h5>
-            <form #loginForm="ngForm" (ngSubmit)="userLogin(loginForm)">
+            <form [formGroup]="userForm" (ngSubmit)="userLogin()">
                 <div class="form-group">
-                    <input type="text" name="email" placeholder="Email" class="form-control" required ngModel>
+                    <input type="text" formControlName="email" placeholder="Email" class="form-control" required ngModel>
                     <!-- <span *ngIf="email.touched && !email.valid" class="text-danger">Email is required</span> -->
                 </div>
                 <div class="form-group">
-                    <input type="password" placeholder="Password" name="password" class="form-control" required ngModel>
+                    <input type="password" placeholder="Password" formControlName="password" class="form-control" required ngModel>
                     <!-- <span  *ngIf="password.touched && !password.valid" class="text-danger">Password is required</span> -->
                 </div>
                 <div class="form-group">
