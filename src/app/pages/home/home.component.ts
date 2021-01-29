@@ -41,9 +41,10 @@ export class HomeComponent implements OnInit {
   }
 
   public getUser(){
+    const token = localStorage.getItem('access_token');
     const headers = {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwLCJpYXQiOjE2MTE5MzMwMTAsImV4cCI6MTYxNDUyNTAxMH0.MOgqnacQRcQEOSxrC3--MJHQ_K0ttWkv25fAty7V6Ls'
+      'Authorization': `Bearer ${token}`
     }
     this.http.get('http://localhost:8000/api/users', {headers}).subscribe((response) => {
       console.log(response);

@@ -14,6 +14,7 @@ import { UserDetailComponent } from './modules/users/user-detail/user-detail.com
 import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { DefaultLayoutComponent } from './components/default-layout/default-layout.component';
 // import { ProductDetailComponent } from './pages/product-detail/product-detail.component'
 
 @NgModule({
@@ -26,7 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     SignupComponent,
     UserDetailComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    DefaultLayoutComponent
   ],
   imports: [
     BrowserModule,
