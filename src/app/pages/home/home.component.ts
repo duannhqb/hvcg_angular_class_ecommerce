@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import {token as accessToken } from '../../constants';
+import {token as MyToken}from '../../constants';
 
 @Component({
   selector: 'app-home',
@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
   }
 
   public getUser(){
-    const token = localStorage.getItem(accessToken.access_token);
+    const token = localStorage.getItem(MyToken.access_token);
     const headers = {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
