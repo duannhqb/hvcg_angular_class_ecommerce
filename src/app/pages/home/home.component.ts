@@ -1,5 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import {token as MyToken}from '../../constants';
+import {decrement,increment,reset} from '../../store/actions/counter.actions';
+import { getProducts } from "../../store/actions/product.actions";
 
 @Component({
   selector: 'app-home',
@@ -7,24 +11,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  public products = [
-    {id: 1, name: 'Iphone 8', price: 1200, stock: 10, src: 'https://cdn.shopify.com/s/files/1/0022/6728/3545/products/iPhone_8_-_Black_45467753-0152-4776-8e6c-ab3f3a7290cf_3442x.png?v=1588926033'},
-    {id: 2, name: 'Iphone 10', price: 1340, stock: 1, src: 'https://cdn.shopify.com/s/files/1/0022/6728/3545/products/iPhone_8_-_Black_45467753-0152-4776-8e6c-ab3f3a7290cf_3442x.png?v=1588926033'},
-    {id: 3, name: 'Iphone 11', price: 1670, stock: 6, src: 'https://cdn.shopify.com/s/files/1/0022/6728/3545/products/iPhone_8_-_Black_45467753-0152-4776-8e6c-ab3f3a7290cf_3442x.png?v=1588926033'},
-    {id: 4, name: 'Iphone 7s', price: 2400, stock: 18, src: 'https://cdn.shopify.com/s/files/1/0022/6728/3545/products/iPhone_8_-_Black_45467753-0152-4776-8e6c-ab3f3a7290cf_3442x.png?v=1588926033'},
-    {id: 5, name: 'Iphone 8s', price: 2400, stock: 18, src: 'https://cdn.shopify.com/s/files/1/0022/6728/3545/products/iPhone_8_-_Black_45467753-0152-4776-8e6c-ab3f3a7290cf_3442x.png?v=1588926033'},
-    {id: 6, name: 'Samsung', price: 2340, stock: 18, src: 'https://cdn.shopify.com/s/files/1/0022/6728/3545/products/iPhone_8_-_Black_45467753-0152-4776-8e6c-ab3f3a7290cf_3442x.png?v=1588926033'},
-  ];
+  public products: any = [];
 
   product: any = {name: 'default'};
   isShow = true;
   parentName = 'My Name is APPPPP';
   userName = 'admin';
+  public counter: any;
 
 
-  constructor(public http: HttpClient) { }
+  constructor(public http: HttpClient, public store: Store) { }
 
   ngOnInit(): void {
+    this.store.dispatch(getProducts());
+    this.store.select((state: any) => state.productReducer).subscribe((response: any) => {
+      // console.log('response', response.products?.payload);
+      this.products = response.products?.payload
+      // this.counter = response.counter;
+      
+    });
     this.getUser();
   }
 
@@ -41,7 +46,7 @@ export class HomeComponent implements OnInit {
   }
 
   public getUser(){
-    const token = localStorage.getItem('access_token');
+    const token = localStorage.getItem(MyToken.access_token);
     const headers = {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
@@ -49,6 +54,16 @@ export class HomeComponent implements OnInit {
     this.http.get('http://localhost:8000/api/users', {headers}).subscribe((response) => {
       console.log(response);
     });
+  }
+
+  public increment(){
+    this.store.dispatch(increment());
+  }
+  public decrement(){
+    this.store.dispatch(decrement());
+  }
+  public reset(){
+    this.store.dispatch(reset());
   }
 
 }
