@@ -1,5 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { addProduct,getProducts } from 'src/app/store/actions/product.actions';
+import { AppState } from 'src/app/store/app-state';
 import {token as MyToken}from '../../constants';
 
 @Component({
@@ -8,14 +11,7 @@ import {token as MyToken}from '../../constants';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  public products = [
-    {id: 1, name: 'Iphone 8', price: 1200, stock: 10, src: 'https://cdn.shopify.com/s/files/1/0022/6728/3545/products/iPhone_8_-_Black_45467753-0152-4776-8e6c-ab3f3a7290cf_3442x.png?v=1588926033'},
-    {id: 2, name: 'Iphone 10', price: 1340, stock: 1, src: 'https://cdn.shopify.com/s/files/1/0022/6728/3545/products/iPhone_8_-_Black_45467753-0152-4776-8e6c-ab3f3a7290cf_3442x.png?v=1588926033'},
-    {id: 3, name: 'Iphone 11', price: 1670, stock: 6, src: 'https://cdn.shopify.com/s/files/1/0022/6728/3545/products/iPhone_8_-_Black_45467753-0152-4776-8e6c-ab3f3a7290cf_3442x.png?v=1588926033'},
-    {id: 4, name: 'Iphone 7s', price: 2400, stock: 18, src: 'https://cdn.shopify.com/s/files/1/0022/6728/3545/products/iPhone_8_-_Black_45467753-0152-4776-8e6c-ab3f3a7290cf_3442x.png?v=1588926033'},
-    {id: 5, name: 'Iphone 8s', price: 2400, stock: 18, src: 'https://cdn.shopify.com/s/files/1/0022/6728/3545/products/iPhone_8_-_Black_45467753-0152-4776-8e6c-ab3f3a7290cf_3442x.png?v=1588926033'},
-    {id: 6, name: 'Samsung', price: 2340, stock: 18, src: 'https://cdn.shopify.com/s/files/1/0022/6728/3545/products/iPhone_8_-_Black_45467753-0152-4776-8e6c-ab3f3a7290cf_3442x.png?v=1588926033'},
-  ];
+  public products: any = [];
 
   product: any = {name: 'default'};
   isShow = true;
@@ -23,9 +19,19 @@ export class HomeComponent implements OnInit {
   userName = 'admin';
 
 
-  constructor(public http: HttpClient) { }
+  constructor(public http: HttpClient, public store: Store<AppState>) { }
 
   ngOnInit(): void {
+    this.store.dispatch(getProducts());
+
+    this.store.select(state => state).subscribe((response: any) => {
+      // this.products = response.products
+      this.products = response.products.products.payload?.data;
+
+      // console.log(this.products);
+      
+
+    });
     this.getUser();
   }
 
@@ -47,9 +53,9 @@ export class HomeComponent implements OnInit {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     }
-    this.http.get('http://localhost:8000/api/users', {headers}).subscribe((response) => {
-      console.log(response);
-    });
+    // this.http.get('http://api.wetime.vn/api/products', {headers}).subscribe((response) => {
+    //   console.log(response);
+    // });
   }
 
 }

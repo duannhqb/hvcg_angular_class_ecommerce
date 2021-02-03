@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { IProduct } from '../models/product.model'
 
 @Injectable({
@@ -16,10 +18,10 @@ export class ProductService {
     {id: 7, name: 'Oppo', price: 2340, stock: 18, src: 'https://cdn.shopify.com/s/files/1/0022/6728/3545/products/iPhone_8_-_Black_45467753-0152-4776-8e6c-ab3f3a7290cf_3442x.png?v=1588926033'},
   ];
 
-  constructor() { }
+  constructor(public http: HttpClient) { }
 
-  public getProducts(): IProduct[] {
-    return this.products;
+  public getProducts(): Observable<any> {
+    return this.http.get('http://api.wetime.vn/api/products');
   }
 
   public getProduct(id: number): IProduct {

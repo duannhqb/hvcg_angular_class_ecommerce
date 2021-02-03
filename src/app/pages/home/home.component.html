@@ -7,7 +7,7 @@
     <img width="60" src="{{product.src}}" alt="">
     <!-- <app-products [products]="products" [myName]="'parentName'" (changeName)="changeName($event)"></app-products> -->
     <div style="height: 300px;">
-      <!-- <app-users *ngIf="isShow" [userName]="userName"></app-users> -->
+      <h4>products {{products[0]?.name}}</h4>
     </div>
     <button (click)="togleUser()">Togle User</button>
   </div>

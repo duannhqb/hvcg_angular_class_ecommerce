@@ -15,6 +15,12 @@ import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DefaultLayoutComponent } from './components/default-layout/default-layout.component';
+import { StoreModule } from '@ngrx/store';
+import { rootReducer } from './store/reducers/product.reducer';
+import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { ProductEffects } from './store/effects/product.effects';
 // import { ProductDetailComponent } from './pages/product-detail/product-detail.component'
 
 @NgModule({
@@ -35,7 +41,11 @@ import { DefaultLayoutComponent } from './components/default-layout/default-layo
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot({
+      products: rootReducer
+    }),
+    EffectsModule.forRoot([ProductEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]
