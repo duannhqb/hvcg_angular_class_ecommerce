@@ -1,0 +1,8 @@
+.product-container {
+    &__image {
+        max-width: 250px;
+        img {
+            width: 100%;
+        }
+    }
+}

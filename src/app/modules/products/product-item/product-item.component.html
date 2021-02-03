@@ -1,0 +1,17 @@
+<div class="card">
+    <div class="card-header">
+        <h5>{{product.name}}</h5>
+    </div>
+    <div class="card-body product-container">
+        <div class="product-container__image">
+            <a [routerLink]="['/products', product.id]">
+
+                <img [src]="product.src" alt=""> 
+            </a>
+        </div>
+    </div>
+    <div class="card-footer">
+        <button class="btn btn-primary">Add To Cart</button>
+        <button class="btn btn-warning" (click)="viewDetail(product.id)">View More</button>
+    </div>
+</div>

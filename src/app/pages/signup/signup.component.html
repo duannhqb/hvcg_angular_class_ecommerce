@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-8 offset-2">
+
+            <h5>User Register</h5>
+            <form [formGroup]="userForm" (ngSubmit)="userSignup()">
+                <div class="form-group">
+                    <input type="text" formControlName="username" placeholder="Username" class="form-control" required >
+                    <!-- <span *ngIf="email.touched && !email.valid" class="text-danger">Email is required</span> -->
+                </div>
+
+                <div class="form-group">
+                    <input type="text" formControlName="email" placeholder="Email" class="form-control" required >
+                    <!-- <span *ngIf="email.touched && !email.valid" class="text-danger">Email is required</span> -->
+                </div>
+
+                <div class="form-group">
+                    <input type="text" formControlName="password" placeholder="Password" class="form-control" required >
+                    <!-- <span *ngIf="email.touched && !email.valid" class="text-danger">Email is required</span> -->
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Password" formControlName="confirm_password" class="form-control" required >
+                    <!-- <span  *ngIf="password.touched && !password.valid" class="text-danger">Password is required</span> -->
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
