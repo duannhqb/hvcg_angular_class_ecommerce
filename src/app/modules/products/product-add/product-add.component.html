@@ -1,0 +1,64 @@
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-8 offset-2">
+
+            <h5>Add Product</h5>
+            <form [formGroup]="addProductForm" (ngSubmit)="handleAddProduct()">
+                <div class="form-group">
+                    <input type="text" formControlName="name" placeholder="Name" class="form-control" >
+                    <!-- <span *ngIf="email.touched && !email.valid" class="text-danger">Email is required</span> -->
+                </div>
+
+                <div class="form-group">
+                    <input type="number" formControlName="price" placeholder="price" class="form-control" >
+                    <!-- <span *ngIf="email.touched && !email.valid" class="text-danger">Email is required</span> -->
+                </div>
+
+                <div class="form-group">
+                    <input type="text" formControlName="list_price" placeholder="List Price" class="form-control"  >
+                    <!-- <span *ngIf="email.touched && !email.valid" class="text-danger">Email is required</span> -->
+                </div>
+                <div class="form-group">
+                    <select formControlName="is_new" class="form-control" id="">
+                        <option value="1">New</option>
+                        <option value="0">Not New</option>
+                    </select>
+                    <!-- <input type="password" placeholder="is_new" formControlName="confirm_password" class="form-control" required > -->
+                    <!-- <span  *ngIf="password.touched && !password.valid" class="text-danger">Password is required</span> -->
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="image" formControlName="image" class="form-control"  >
+                    <!-- <span  *ngIf="password.touched && !password.valid" class="text-danger">Password is required</span> -->
+                </div>
+
+                <div class="form-group">
+                    <!-- <input type="password" placeholder="description" formControlName="confirm_password" class="form-control" required > -->
+                    <textarea placeholder="description" formControlName="description" class="form-control" cols="30" rows="5"></textarea>
+                    <!-- <span  *ngIf="password.touched && !password.valid" class="text-danger">Password is required</span> -->
+                </div>
+
+                <div class="form-group">
+
+                    <select formControlName="status" class="form-control" id="">
+                        <option value="1">Display</option>
+                        <option value="0">Not Display</option>
+                    </select>
+
+
+                </div>
+                <div class="form-group">
+
+                    <select formControlName="category" class="form-control" id="">
+                        <option value="1">Category 1</option>
+                        <option value="2">Category 2</option>
+                        <option value="3">Category 3</option>
+                    </select>
+
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

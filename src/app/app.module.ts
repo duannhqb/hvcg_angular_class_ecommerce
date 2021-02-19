@@ -20,7 +20,10 @@ import { counterReducer } from './store/reducers/counter.reducer';
 import { productReducer } from './store/reducers/product.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { ProductEffects } from './store/effects/product.effects';
-// import { ProductDetailComponent } from './pages/product-detail/product-detail.component'
+import { AdminLayoutComponent } from './components/admin-layout/admin-layout.component';
+// import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
+import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
+import {StoreDevtools, StoreDevtoolsModule} from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,8 @@ import { ProductEffects } from './store/effects/product.effects';
     SignupComponent,
     UserDetailComponent,
     NotfoundComponent,
-    DefaultLayoutComponent
+    DefaultLayoutComponent,
+    AdminLayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -41,9 +45,11 @@ import { ProductEffects } from './store/effects/product.effects';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    EffectsModule.forRoot([ProductEffects]),
+    EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument(),
+    StoreRouterConnectingModule.forRoot({stateKey: 'router'}),
     StoreModule.forRoot({
-        productReducer: productReducer
+        router: routerReducer
     })
   ],
   providers: [],
@@ -55,24 +61,3 @@ export class AppModule {
     
   }
 }
-
-// clean architecture
-
-// data
-// domain
-// presentation
-// angular, react, vuejs, 
-// DOM, State Management
-// Single Source of Truth.
-// function getAA(){
-//   return 9090
-// }
-
-// function getVal(x:number, y: number){
-//   return x+Math.random()*5+y+Math.random()*5;
-
-// }
-
-// let rs = getVal(4, 8);
-
-// ko bi phu thuoc boi yeu to ben ngoai
