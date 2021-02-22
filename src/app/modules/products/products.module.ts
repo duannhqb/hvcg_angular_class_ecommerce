@@ -6,6 +6,10 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { ProductItemComponent } from './product-item/product-item.component';
 import { ProductAddComponent } from './product-add/product-add.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { productReducer } from './state/product.reducer';
+import { StoreModule } from '@ngrx/store';
+import {EffectsModule} from '@ngrx/effects';
+import {ProductEffects } from './state/product.effects';
 
 
 @NgModule({
@@ -14,7 +18,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     ProductsRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    EffectsModule.forFeature([ProductEffects]),
+    StoreModule.forFeature('products', productReducer)
   ]
 })
 export class ProductsModule { }
