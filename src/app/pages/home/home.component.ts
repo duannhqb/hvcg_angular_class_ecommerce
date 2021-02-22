@@ -24,9 +24,11 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(getProducts());
-    this.store.select((state: any) => state.productReducer).subscribe((response: any) => {
+    this.store.select((state: any) => state).subscribe((response: any) => {
       // console.log('response', response.products?.payload);
-      this.products = response.products?.payload
+      console.log('response', response);
+      
+      // this.products = response
       // this.counter = response.counter;
       
     });
@@ -46,7 +48,7 @@ export class HomeComponent implements OnInit {
   }
 
   public getUser(){
-    const token = localStorage.getItem(MyToken.access_token);
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTYxNDAwOTUyOSwiZXhwIjoxNjE2NjAxNTI5fQ.hAzsUvS_Wz25ga_w6VmfStB_5Epx5dnJjSsR1nfIKEU';
     const headers = {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`

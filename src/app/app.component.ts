@@ -5,11 +5,7 @@ import { Component, OnInit, OnChanges, DoCheck, AfterContentInit,AfterContentChe
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, 
-  OnChanges,
-  DoCheck,
-  AfterContentInit,
-  AfterContentChecked,AfterViewInit,AfterViewChecked,OnDestroy{
+export class AppComponent implements OnInit {
   title = 'Angular demo';
   product: any = {name: 'default'};
   version: number = 11;
@@ -42,39 +38,13 @@ export class AppComponent implements OnInit,
     
     this.isShow = !this.isShow;
   }
-  ngOnChanges(){
-    console.log('Parent ngOnChanges');
 
-  }
 
   ngOnInit(): void {
-    console.log('Parent ngOnInit');
+ 
   }
 
-  ngDoCheck(){
-    console.log('Parent ngDoCheck');
 
-  }
-  ngAfterContentInit(){
-    console.log('Parent ngAfterContentInit');
-
-  }
-  ngAfterContentChecked(){
-    console.log('Parent ngAfterContentChecked');
-
-  }
-  ngAfterViewInit(){
-    console.log('Parent ngAfterViewInit');
-
-  }
-  ngAfterViewChecked(){
-    console.log('Parent ngAfterViewChecked');
-
-  }
-  ngOnDestroy(){
-    console.log('Parent ngOnDestroy');
-
-  }
 
 
 }

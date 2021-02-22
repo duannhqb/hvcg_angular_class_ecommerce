@@ -24,6 +24,7 @@ import { AdminLayoutComponent } from './components/admin-layout/admin-layout.com
 // import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
 import {StoreDevtools, StoreDevtoolsModule} from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,9 @@ import {StoreDevtools, StoreDevtoolsModule} from '@ngrx/store-devtools';
     ReactiveFormsModule,
     HttpClientModule,
     EffectsModule.forRoot([]),
-    StoreDevtoolsModule.instrument(),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+    }),
     StoreRouterConnectingModule.forRoot({stateKey: 'router'}),
     StoreModule.forRoot({
         router: routerReducer
